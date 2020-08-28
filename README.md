@@ -40,3 +40,5 @@ Can you use this script ?
 Well, it depends - do you want to use it ? If yes, be my guest.
 And if it made your life easy, drop me an email at dsklegend@live.com.
 I'd be happy to know that someone out there is using my script xD.
+
+~TheLegend

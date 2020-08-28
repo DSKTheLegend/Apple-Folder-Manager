@@ -56,7 +56,7 @@ for file in dir_list :
             try:
                 shutil.move('./100APPLE/'+str(file),'./100APPLE/Screen_Record')
                 screen_rec=screen_rec+1
-                print("Whatsapp Video ->"+file)
+                print("Screen Recordings ->"+file)
             except:
                 os.remove('./100APPLE/'+str(file))
         elif str(file).endswith('AAE') :
