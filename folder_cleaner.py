@@ -1,5 +1,7 @@
 import os
 import shutil
+import datetime
+
 
 print('Pre-Check - Folders Exists ??')
 sub_folder_list = ['Apple_Img_Binaries','Screenshot','Video','Whatsapp','Screen_Record']
@@ -10,6 +12,7 @@ for sub_folder in sub_folder_list:
     except:
         print("Folders "+str(sub_folder)+" already exist")
 pause = raw_input('Start Processing ? ')
+
 whatsapp_img = 0
 screen_rec = 0
 screehshot = 0
@@ -67,14 +70,32 @@ for file in dir_list :
             except:
                 os.remove('./100APPLE/'+str(file))
 
+try:
+    file = open("Img_Count_Log.txt","r").read()
+    img_count = int(file)
+except:
+    img_count = 0
 
-print('\n\n\n')
-print("==============================================================")
-print("Moved "+str(whatsapp_img)+" files to whatsapp folder")
-print("Moved "+str(screen_rec)+" files to Screen Record folder")
-print("Moved "+str(screehshot)+" files to screenshot folder")
-print("Moved "+str(apple_img_bin)+" files to Apple Binary Folder")
-print("Moved "+str(video)+" files to Videos")
-print("Total Image Files : "+str(images))
-print("==============================================================")
+new_images = images - img_count
+log = """
+\n\n\n Date : """ + str(datetime.datetime.now()) + """\n
+================================================================
+Moved """+str(whatsapp_img)+""" files to whatsapp folder
+Moved """+str(screen_rec)+""" files to Screen Record folder
+Moved """+str(screehshot)+""" files to screenshot folder
+Moved """+str(apple_img_bin)+""" files to Apple Binary Folder
+Moved """+str(video)+""" files to Videos
+New Image Files : """+ str(new_images) +"""
+================================================================
+"""
+print(log)
+
+file = open("Img_Count_Log.txt","w")
+file.write(str(images))
+file.close()
+
+file = open("Log.txt","a")
+file.write(str(log))
+file.close()
+
 pause = raw_input('')
