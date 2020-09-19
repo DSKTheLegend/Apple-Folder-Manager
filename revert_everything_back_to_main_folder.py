@@ -21,7 +21,7 @@ for sub_folder in sub_folder_list:
 
 if error == 0:
     print("It's messy again - just like Apple made it [ I mean the DCIM folder :) ]")
-    log = """\n\n\n
+    log = """\n\n
 ==+ >  The reset command was executed at """+ str(datetime.datetime.now()) 
     file = open("Log.txt","a")
     file.write(log)
