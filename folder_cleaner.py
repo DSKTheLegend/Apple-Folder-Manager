@@ -78,7 +78,7 @@ except:
 
 new_images = images - img_count
 log = """
-\n\n\n Date : """ + str(datetime.datetime.now()) + """\n
+\n\n Date : """ + str(datetime.datetime.now()) + """\n
 ================================================================
 Moved """+str(whatsapp_img)+""" files to whatsapp folder
 Moved """+str(screen_rec)+""" files to Screen Record folder
