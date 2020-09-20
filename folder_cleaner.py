@@ -19,8 +19,8 @@ for sub_folder in sub_folder_list:
 # Start the magic ?
 pause = raw_input('Start Processing ? ')
 # Exit if donot want to start
-if pause.tolower() in ['n','no']:
-    exit()
+# if pause.tolower() in ['n','no']:
+#     exit()
 
 # Initializing variables
 whatsapp_img = 0
