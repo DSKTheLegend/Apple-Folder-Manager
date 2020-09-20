@@ -59,7 +59,7 @@ for file in dir_list :
                 os.remove('./100APPLE/'+str(file))
         else :
             images=images+1
-            print("Images ->"+file)
+            #print("Images ->"+file)
     else:
         if str(file).endswith('JPG') :
             try:
