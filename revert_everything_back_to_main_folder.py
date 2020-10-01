@@ -4,7 +4,7 @@ import shutil
 import datetime
 
 # List of important sub-folders
-sub_folder_list = ['Apple_Img_Binaries','Screenshot','Video','Whatsapp','Screen_Record','Corrupted','Only_Corrupted']
+sub_folder_list = ['Apple_Img_Binaries','Screenshot','Video','Whatsapp','Screen_Record','Duplicate_Compatible','Only_Compatible']
 pause = raw_input('Start Processing ? ')
 # Check flag to verify that all folders are empty before deleting them
 error = 0

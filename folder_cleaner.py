@@ -6,7 +6,7 @@ import datetime
 # Begin
 print('Pre-Check - Folders Exists ??')
 # List of necessary sub-folders
-sub_folder_list = ['Apple_Img_Binaries','Screenshot','Video','Whatsapp','Screen_Record','Corrupted','Only_Corrupted']
+sub_folder_list = ['Apple_Img_Binaries','Screenshot','Video','Whatsapp','Screen_Record','Duplicate_Compatible','Only_Compatible']
 
 # Check if the necessary sub folders exists
 for sub_folder in sub_folder_list:
@@ -24,8 +24,8 @@ pause = raw_input('Start Processing ? ')
 
 # Initializing variables
 
-onlyCorrupted = 0
-corrupted = 0
+onlyCompatible = 0
+Duplicate_Compatible = 0
 whatsapp_img = 0
 screen_rec = 0
 screehshot = 0
@@ -63,11 +63,11 @@ for file in dir_list :
                 os.remove('./100APPLE/'+file)
         elif file.startswith('IMG_E'):
             if str(file[0:4]+file[5:]) not in (file_name.upper() for file_name in dir_list):
-                shutil.move('./100APPLE/'+file,'./100APPLE/Only_Corrupted')
-                onlyCorrupted = onlyCorrupted + 1
+                shutil.move('./100APPLE/'+file,'./100APPLE/Only_Compatible')
+                onlyCompatible = onlyCompatible + 1
             else :
-                shutil.move('./100APPLE/'+file,'./100APPLE/Corrupted')
-                corrupted = corrupted + 1
+                shutil.move('./100APPLE/'+file,'./100APPLE/Duplicate_Compatible')
+                Duplicate_Compatible = Duplicate_Compatible + 1
         else :
             images=images+1
             #print("Images ->"+file)
@@ -113,8 +113,8 @@ Moved """+str(screen_rec)+""" files to Screen Record folder
 Moved """+str(screehshot)+""" files to screenshot folder
 Moved """+str(apple_img_bin)+""" files to Apple Binary Folder
 Moved """+str(video)+""" files to Videos
-Number of new Corrupted Files with Original : """+str(corrupted)+""" 
-Number of new Only Corrupted Files : """+str(onlyCorrupted)+""" 
+Number of new Duplicate_Compatible Files : """+str(Duplicate_Compatible)+""" 
+Number of new Only Compatible Files : """+str(onlyCompatible)+""" 
 New Image Files : """+ str(new_images) +"""
 ================================================================
 """
