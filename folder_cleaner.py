@@ -6,7 +6,7 @@ import datetime
 # Begin
 print('Pre-Check - Folders Exists ??')
 # List of necessary sub-folders
-sub_folder_list = ['Apple_Img_Binaries','Screenshot','Video','Whatsapp','Screen_Record']
+sub_folder_list = ['Apple_Img_Binaries','Screenshot','Video','Whatsapp','Screen_Record','Corrupted','Only_Corrupted']
 
 # Check if the necessary sub folders exists
 for sub_folder in sub_folder_list:
@@ -23,6 +23,9 @@ pause = raw_input('Start Processing ? ')
 #     exit()
 
 # Initializing variables
+
+onlyCorrupted = 0
+corrupted = 0
 whatsapp_img = 0
 screen_rec = 0
 screehshot = 0
@@ -35,53 +38,61 @@ dir_list = os.listdir('./100APPLE/')
 
 # Logic for doing what this script is intended to do starts here
 for file in dir_list : 
-    if str(file).startswith('IMG'):
-        if str(file).endswith('PNG'):
+    file = str(file).upper()
+    if file.startswith('IMG'):
+        if file.endswith('PNG'):
             try:
-                shutil.move('./100APPLE/'+str(file),'./100APPLE/Screenshot')
+                shutil.move('./100APPLE/'+file,'./100APPLE/Screenshot')
                 screehshot = screehshot+1
-                print("Screenshot -> "+file)
+                #print("Screenshot -> "+file)
             except:
-                os.remove('./100APPLE/'+str(file))
-        elif str(file).endswith('AAE') :
+                os.remove('./100APPLE/'+file)
+        elif file.endswith('AAE') :
             try:
-                shutil.move('./100APPLE/'+str(file),'./100APPLE/Apple_Img_Binaries')
+                shutil.move('./100APPLE/'+file,'./100APPLE/Apple_Img_Binaries')
                 apple_img_bin=apple_img_bin+1
-                print("Apple Img Bin ->"+file)
+                #print("Apple Img Bin ->"+file)
             except:
-                os.remove('./100APPLE/'+str(file))
-        elif str(file).endswith('MOV') :
+                os.remove('./100APPLE/'+file)
+        elif file.endswith('MOV') :
             try:
-                shutil.move('./100APPLE/'+str(file),'./100APPLE/Video')
+                shutil.move('./100APPLE/'+file,'./100APPLE/Video')
                 video=video+1
-                print("Videos ->"+file)
+                #print("Videos ->"+file)
             except:
-                os.remove('./100APPLE/'+str(file))
+                os.remove('./100APPLE/'+file)
+        elif file.startswith('IMG_E'):
+            if str(file[0:4]+file[5:]) not in (file_name.upper() for file_name in dir_list):
+                shutil.move('./100APPLE/'+file,'./100APPLE/Only_Corrupted')
+                onlyCorrupted = onlyCorrupted + 1
+            else :
+                shutil.move('./100APPLE/'+file,'./100APPLE/Corrupted')
+                corrupted = corrupted + 1
         else :
             images=images+1
             #print("Images ->"+file)
     else:
-        if str(file).endswith('JPG') :
+        if file.endswith('JPG') :
             try:
-                shutil.move('./100APPLE/'+str(file),'./100APPLE/Whatsapp')
+                shutil.move('./100APPLE/'+file,'./100APPLE/Whatsapp')
                 whatsapp_img=whatsapp_img+1
-                print("Whatsapp ->"+file)
+                #print("Whatsapp ->"+file)
             except:
-                os.remove('./100APPLE/'+str(file))
-        elif str(file).endswith('MP4') :
+                os.remove('./100APPLE/'+file)
+        elif file.endswith('MP4') :
             try:
-                shutil.move('./100APPLE/'+str(file),'./100APPLE/Screen_Record')
+                shutil.move('./100APPLE/'+file,'./100APPLE/Screen_Record')
                 screen_rec=screen_rec+1
-                print("Screen Recordings ->"+file)
+                #print("Screen Recordings ->"+file)
             except:
-                os.remove('./100APPLE/'+str(file))
-        elif str(file).endswith('AAE') :
+                os.remove('./100APPLE/'+file)
+        elif file.endswith('AAE') :
             try:
-                shutil.move('./100APPLE/'+str(file),'./100APPLE/Apple_Img_Binaries')
+                shutil.move('./100APPLE/'+file,'./100APPLE/Apple_Img_Binaries')
                 apple_img_bin=apple_img_bin+1
-                print("Apple Img Bin ->"+file)
+                #print("Apple Img Bin ->"+file)
             except:
-                os.remove('./100APPLE/'+str(file))
+                os.remove('./100APPLE/'+file)
 
 # If it is a first time run and the Img_Count_Log.txt file doesn't exist
 try:
@@ -102,9 +113,12 @@ Moved """+str(screen_rec)+""" files to Screen Record folder
 Moved """+str(screehshot)+""" files to screenshot folder
 Moved """+str(apple_img_bin)+""" files to Apple Binary Folder
 Moved """+str(video)+""" files to Videos
+Number of new Corrupted Files with Original : """+str(corrupted)+""" 
+Number of new Only Corrupted Files : """+str(onlyCorrupted)+""" 
 New Image Files : """+ str(new_images) +"""
 ================================================================
 """
+
 
 # Printing log 
 print(log)

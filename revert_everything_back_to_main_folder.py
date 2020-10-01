@@ -4,8 +4,8 @@ import shutil
 import datetime
 
 # List of important sub-folders
-sub_folder_list = ['Apple_Img_Binaries','Screenshot','Video','Whatsapp','Screen_Record']
-
+sub_folder_list = ['Apple_Img_Binaries','Screenshot','Video','Whatsapp','Screen_Record','Corrupted','Only_Corrupted']
+pause = raw_input('Start Processing ? ')
 # Check flag to verify that all folders are empty before deleting them
 error = 0
 
@@ -22,7 +22,7 @@ for sub_folder in sub_folder_list:
         os.rmdir('./100APPLE/'+str(sub_folder))
         print('Deleted '+str(sub_folder)+'!!')
     except:
-        print('Please make sure '+sub_folder+' is empty!')
+        pause = raw_input('Please make sure '+sub_folder+' is empty!')
         error = 1
 
 # If everything works as expected, write operation to log file
