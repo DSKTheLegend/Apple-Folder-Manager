@@ -86,6 +86,13 @@ for file in dir_list :
                 #print("Screen Recordings ->"+file)
             except:
                 os.remove('./100APPLE/'+file)
+        elif file.endswith('MOV') :
+            try:
+                shutil.move('./100APPLE/'+file,'./100APPLE/Video')
+                video=video+1
+                #print("Screen Recordings ->"+file)
+            except:
+                os.remove('./100APPLE/'+file)
         elif file.endswith('AAE') :
             try:
                 shutil.move('./100APPLE/'+file,'./100APPLE/Apple_Img_Binaries')
